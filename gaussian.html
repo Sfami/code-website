@@ -4,9 +4,135 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Python Tutorials for Beginners</title>
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+    <!-- <link rel="stylesheet" href="style.css"> -->
+    <link rel="stylesheet" type="text/css" href="prettify.css">
+    <!-- <script type="text/javascript" src="prettify.js"></script> -->
 </head>
 <body>
-    
+    <article>
+        <!-- <h4>Gaussian Elimination using Back Substitution in Python.</h4> -->
+        <section class="intro">
+            <h2>Gaussian Elimination using Back Substitution in Python</h2>
+        </section>
+        <section class="code">
+            
+            <pre class="prettyprint">
+                <code class="language-java">
+
+<span class="nocode">
+# Importing NumPy Library
+ </span>
+                
+import numpy as np
+import sys
+
+<span class="nocode">
+# Reading number of unknowns
+</span>
+n = int(input('Enter number of unknowns: '))
+
+<span class="nocode">
+# Making numpy array of n x n+1 size and initializing 
+# to zero for storing augmented matrix
+</span>
+a = np.zeros((n,n+1))
+
+<span class="nocode">
+# Making numpy array of n size and initializing
+# to zero for storing solution vector
+</span> 
+x = np.zeros(n)
+
+<span class="nocode">
+# Reading augmented matrix coefficients
+</span>
+print('Enter Augmented Matrix Coefficients:')
+for i in range(n):
+    for j in range(n+1):
+        a[i][j] = float(input( 'a['+str(i)+']['+ str(j)+']='))
+
+<span class="nocode">
+# Applying Gauss Elimination
+</span>                
+for i in range(n):
+    if a[i][i] == 0.0:
+        sys.exit('Divide by zero detected!')
+                        
+    for j in range(i+1, n):
+        ratio = a[j][i]/a[i][i]
+                        
+        for k in range(n+1):
+            a[j][k] = a[j][k] - ratio * a[i][k]
+
+<span class="nocode">
+# Back Substitution
+</span>
+x[n-1] = a[n-1][n]/a[n-1][n-1]
+
+for i in range(n-2,-1,-1):
+    x[i] = a[i][n]
+                    
+    for j in range(i+1,n):
+        x[i] = x[i] - a[i][j]*x[j]            
+        x[i] = x[i]/a[i][i]
+
+<span class="nocode">
+# Displaying solution
+</span>
+print('\nRequired solution is: ')
+for i in range(n):
+    print('X%d = %0.2f' %(i,x[i]), end = '\t')
+
+
+                </code>
+            </pre>
+        </section>
+    </article>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="footer-col">
+                    <h4>company</h4>
+                    <ul>
+                        <li><a href="#">about us</a></li>
+                        <li><a href="#">our services</a></li>
+                        <li><a href="#">privacy policy</a></li>
+                        <li><a href="#">affiliate program</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>get help</h4>
+                    <ul>
+                        <li><a href="#">FAQ</a></li>
+                        <li><a href="#">shipping</a></li>
+                        <li><a href="#">returns</a></li>
+                        <li><a href="#">order status</a></li>
+                        <li><a href="#">payment options</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>online shop</h4>
+                    <ul>
+                        <li><a href="#">watch</a></li>
+                        <li><a href="#">bag</a></li>
+                        <li><a href="#">shoes</a></li>
+                        <li><a href="#">dress</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>follow us</h4>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+   </footer>
 </body>
 </html>
